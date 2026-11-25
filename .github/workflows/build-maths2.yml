@@ -8,6 +8,11 @@ on:
         required: true
         default: "maths2"
         type: string
+      source_ref:
+        description: "Branch containing the app source"
+        required: true
+        default: "feat/maths2-dual-function-generator"
+        type: string
 
 permissions:
   contents: read
@@ -18,6 +23,8 @@ jobs:
     steps:
       - name: Check out selected fork branch
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_ref }}
 
       - name: Install Rust nightly (native app build)
         uses: dtolnay/rust-toolchain@nightly
